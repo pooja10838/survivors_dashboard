@@ -1,328 +1,65 @@
 import sys
 sys.path.insert(0, '../')
-
-import dash_core_components as dcc
+import os
 import dash_html_components as html
-import plotly.graph_objs as go
-
 from utils import Header, make_dash_table
+import dash_bootstrap_components as dbc
 
 
 def create_layout(app):
     return html.Div(
         [
-            Header(app),
-            # page 4
+            html.Div([Header(app)]),
+            # page 1
             html.Div(
                 [
-                    # Row 1
-                    html.Div(
-                        [
-                            html.Div(
-                                [html.H6(["Expenses"], className="subtitle padded")],
-                                className="twelve columns",
-                            )
-                        ],
-                        className="row ",
-                    ),
-                    # Row 2
                     html.Div(
                         [
                             html.Div(
                                 [
-                                    html.Strong(),
-                                    html.H6(["Minimums"], className="subtitle padded"),
-                                ],
-                                className="six columns",
-                            ),
-                            html.Div(
-                                [
-                                    html.Br([]),
-                                    html.Strong(
-                                        "Fees on $10,000 invested over 10 years",
-                                    ),
-                                    dcc.Graph(
-                                        id="graph-6",
-                                        figure={
-                                            "data": [
-                                                go.Bar(
-                                                    x=["Category Average", "This fund"],
-                                                    y=["2242", "329"],
-                                                    marker={"color": "#97151c"},
-                                                    name="A",
-                                                ),
-                                                go.Bar(
-                                                    x=["This fund"],
-                                                    y=["1913"],
-                                                    marker={"color": " #dddddd"},
-                                                    name="B",
-                                                ),
-                                            ],
-                                            "layout": go.Layout(
-                                                annotations=[
-                                                    {
-                                                        "x": -0.0111111111111,
-                                                        "y": 2381.92771084,
-                                                        "font": {
-                                                            "color": "#7a7a7a",
-                                                            "family": "Arial sans serif",
-                                                            "size": 8,
-                                                        },
-                                                        "showarrow": False,
-                                                        "text": "$2,242",
-                                                        "xref": "x",
-                                                        "yref": "y",
-                                                    },
-                                                    {
-                                                        "x": 0.995555555556,
-                                                        "y": 509.638554217,
-                                                        "font": {
-                                                            "color": "#7a7a7a",
-                                                            "family": "Arial sans serif",
-                                                            "size": 8,
-                                                        },
-                                                        "showarrow": False,
-                                                        "text": "$329",
-                                                        "xref": "x",
-                                                        "yref": "y",
-                                                    },
-                                                    {
-                                                        "x": 0.995551020408,
-                                                        "y": 1730.32432432,
-                                                        "font": {
-                                                            "color": "#7a7a7a",
-                                                            "family": "Arial sans serif",
-                                                            "size": 8,
-                                                        },
-                                                        "showarrow": False,
-                                                        "text": "You save<br><b>$1,913</b>",
-                                                        "xref": "x",
-                                                        "yref": "y",
-                                                    },
-                                                ],
-                                                autosize=False,
-                                                height=260,
-                                                width=320,
-                                                bargap=0.4,
-                                                barmode="stack",
-                                                hovermode="closest",
-                                                margin={
-                                                    "r": 40,
-                                                    "t": 20,
-                                                    "b": 20,
-                                                    "l": 40,
-                                                },
-                                                showlegend=False,
-                                                title="",
-                                                xaxis={
-                                                    "autorange": True,
-                                                    "range": [-0.5, 1.5],
-                                                    "showline": True,
-                                                    "tickfont": {
-                                                        "family": "Arial sans serif",
-                                                        "size": 8,
-                                                    },
-                                                    "title": "",
-                                                    "type": "category",
-                                                    "zeroline": False,
-                                                },
-                                                yaxis={
-                                                    "autorange": False,
-                                                    "mirror": False,
-                                                    "nticks": 3,
-                                                    "range": [0, 3000],
-                                                    "showgrid": True,
-                                                    "showline": True,
-                                                    "tickfont": {
-                                                        "family": "Arial sans serif",
-                                                        "size": 10,
-                                                    },
-                                                    "tickprefix": "$",
-                                                    "title": "",
-                                                    "type": "linear",
-                                                    "zeroline": False,
-                                                },
-                                            ),
-                                        },
-                                        config={"displayModeBar": False},
-                                    ),
-                                ],
-                                className="six columns",
-                            ),
-                        ],
-                        className="row ",
-                    ),
-                    # Row 3
-                    html.Div(
-                        [
-                            html.Div(
-                                [
-                                    html.H6(["Fees"], className="subtitle"),
-                                    html.Br([]),
                                     html.Div(
                                         [
-                                            html.Div(
-                                                [
-                                                    html.Div(
-                                                        [
-                                                            html.Strong(
-                                                                ["Purchase fee"],
-                                                                style={
-                                                                    "color": "#515151"
-                                                                },
-                                                            )
-                                                        ],
-                                                        className="three columns right-aligned",
-                                                    ),
-                                                    html.Div(
-                                                        [
-                                                            html.P(
-                                                                ["None"],
-                                                                style={
-                                                                    "color": "#7a7a7a"
-                                                                },
-                                                            )
-                                                        ],
-                                                        className="nine columns",
-                                                    ),
-                                                ],
-                                                className="row",
-                                                style={
-                                                    "background-color": "#f9f9f9",
-                                                    "padding-top": "20px",
-                                                },
-                                            ),
-                                            html.Div(
-                                                [
-                                                    html.Div(
-                                                        [
-                                                            html.Strong(
-                                                                ["Redemption fee"],
-                                                                style={
-                                                                    "color": "#515151"
-                                                                },
-                                                            )
-                                                        ],
-                                                        className="three columns right-aligned",
-                                                    ),
-                                                    html.Div(
-                                                        [
-                                                            html.P(
-                                                                ["None"],
-                                                                style={
-                                                                    "color": "#7a7a7a"
-                                                                },
-                                                            )
-                                                        ],
-                                                        className="nine columns",
-                                                    ),
-                                                ],
-                                                className="row",
-                                                style={"background-color": "#f9f9f9"},
-                                            ),
-                                            html.Div(
-                                                [
-                                                    html.Div(
-                                                        [
-                                                            html.Strong(
-                                                                ["12b-1 fee"],
-                                                                style={
-                                                                    "color": "#515151"
-                                                                },
-                                                            )
-                                                        ],
-                                                        className="three columns right-aligned",
-                                                    ),
-                                                    html.Div(
-                                                        [
-                                                            html.P(
-                                                                ["None"],
-                                                                style={
-                                                                    "color": "#7a7a7a"
-                                                                },
-                                                            )
-                                                        ],
-                                                        className="nine columns",
-                                                    ),
-                                                ],
-                                                className="row",
-                                                style={"background-color": "#f9f9f9"},
-                                            ),
-                                        ],
-                                        className="fees",
-                                    ),
+                                            html.H5("Data"),
+                                            html.Br([]),
+                                            html.P([" The Survivors public data set constitutes patient data from the Survivors App after a data cleaning process:" , html.P(),
+                                                "Variables included are:" ,html.P(),"Epidimiological Data such as : ", html.Li("age",style={"color": "#ffffff"}), html.Li("genetic gender",style={"color": "#ffffff"}),
+                                               html.Li("date of COVID diagnosis",style={"color": "#ffffff"}),html.Li("Country of redicence",style={"color": "#ffffff"}),"Historical medical data such as : "
+                                               , html.Li("medical hitory of patient",style={"color": "#ffffff"}), html.Li("drugs",style={"color": "#ffffff"}), "Accute Phase data such as :",
+                                                html.Li("symptoms",style={"color": "#ffffff"}), html.Li("dates of sickness",style={"color": "#ffffff"}), "Recovered Phase data such as :",
+                                                html.Li("symptoms in the recovery phase",style={"color": "#ffffff"}), html.Li("WHODAS survey in the recovery phase",style={"color": "#ffffff"}), html.P(),
+                                                "The public data set is anonymized using our data protection concept."
+                                            ], style={"color": "#ffffff"}
+                                             ),
+                                        ], className="six columns product"),
                                     html.Div(
                                         [
-                                            html.Div(
+                                    html.H6(["Data File Zip"], className="subtitle padded"),
+                                            dbc.Button("Download Zip File", id="open"),
+                                            dbc.Modal(
                                                 [
-                                                    html.Strong(
-                                                        ["Account service fee"],
-                                                        style={"color": "#515151"},
-                                                    )
+                                                    dbc.ModalHeader(html.P(["Download", html.Br(),"Survivors Data public data set"])),
+                                                    dbc.ModalBody(html.P(["PUBLIC DATA SET TERMS OF AGREEMENT",
+                                                    html.Li("I will only use the Survivors Team  public data set for personal research on COVID - 19."),
+                                                    html.Li("I agree to preserve, at all times, the confidentiality of the information.In particular, I undertake not to attempt to compromise or otherwise infringe the confidentiality of information of patients."),
+                                                    html.Li("I agree that I have expertise to analyse and interpret the Survivors  data based on statistical guidelines."),
+                                                    html.Li("I agree to recognize the contribution of the  Survivors Team  study group and to include a proper acknowledgement in any work based on the Survivors data.")
+                                                    ])),
+                                                    dbc.ModalFooter( [ html.A(dbc.Button( "AGREE", id="bclose", className="ml-auto", style={'margin':'auto','align':'left'}), id='download-link'),
+                                                                     dbc.Button("DISAGREE", id="bclose2", className="ml-auto",style={'margin-left':'5%','align-items': 'flex-end','align':'right'})], className="row "
+
+                                                                     ),
                                                 ],
-                                                className="three columns right-aligned",
+
+
+                                                id="modal",
+                                                size="lg",
+                                                scrollable=True,
                                             ),
-                                            html.Div(
-                                                [
-                                                    html.Strong(
-                                                        [
-                                                            "Nonretirement accounts, traditional IRAs, Roth IRAs, UGMAs/UTMAs, SEP-IRAs, and education savings accounts (ESAs)"
-                                                        ],
-                                                        style={"color": "#515151"},
-                                                    ),
-                                                    html.P(
-                                                        [
-                                                            "We charge a $20 annual account service fee for each Brokerage Account, as well as each individual mutual fund holding with a balance of less than $10,000 in an account. This fee does not apply if you sign up for account and choose electronic delivery of statements, confirmations, and fund reports and prospectuses. This fee also does not apply to members of Flagship Select™, Flagship®, Voyager Select®, and Voyager® Services."
-                                                        ],
-                                                        style={"color": "#7a7a7a"},
-                                                    ),
-                                                    html.Br([]),
-                                                    html.Strong(
-                                                        ["SIMPLE IRAs"],
-                                                        style={"color": "#515151"},
-                                                    ),
-                                                    html.P(
-                                                        [
-                                                            "We charge participants a $25 annual account service fee for each fund they hold in their SIMPLE IRA. This fee does not apply to members of Flagship Select, Flagship, Voyager Select, and Voyager Services."
-                                                        ],
-                                                        style={"color": "#7a7a7a"},
-                                                    ),
-                                                    html.Br([]),
-                                                    html.Strong(
-                                                        ["403(b)(7) plans"],
-                                                        style={"color": "#515151"},
-                                                    ),
-                                                    html.P(
-                                                        [
-                                                            "We charge participants a $15 annual account service fee for each fund they hold in their 403(b)(7) account. This fee does not apply to members of Flagship Select, Flagship, Voyager Select, and Voyager Services."
-                                                        ],
-                                                        style={"color": "#7a7a7a"},
-                                                    ),
-                                                    html.Br([]),
-                                                    html.Strong(
-                                                        ["Individual 401(k) plans"],
-                                                        style={"color": "#515151"},
-                                                    ),
-                                                    html.P(
-                                                        [
-                                                            "We charge participants a $20 annual account service fee for each fund they hold in their Individual 401(k) account. This fee will be waived for all participants in the plan if at least 1 participant qualifies for Flagship Select, Flagship, Voyager Select, and Voyager Services"
-                                                        ],
-                                                        style={"color": "#7a7a7a"},
-                                                    ),
-                                                    html.Br([]),
-                                                ],
-                                                className="nine columns",
-                                            ),
-                                        ],
-                                        className="row",
-                                        style={
-                                            "background-color": "#f9f9f9",
-                                            "padding-bottom": "30px",
-                                        },
+                                        ], className="six columns",
                                     ),
                                 ],
-                                className="twelve columns",
-                            )
+                                className="row",
+                            ),
                         ],
                         className="row",
                     ),
@@ -330,5 +67,7 @@ def create_layout(app):
                 className="sub-page", id="sub-page"
             ),
         ],
-        className="page",
+        className="page"
     )
+
+
